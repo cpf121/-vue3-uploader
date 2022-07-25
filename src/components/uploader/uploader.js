@@ -17,6 +17,18 @@ const EVENTSMAP = {
 //注册所有事件
 function allEvent(...args){
     const name = args[0]
+    const handler = EVENTSMAP[name]
+    if(handler){
+        if (handler === true) {
+            return
+        }
+        if(proxy[handler]){
+            proxy[handler].apply(proxy, args.slice(1))
+        }else{
+            console.error("方法未注册成功")
+        }
+    }
+    proxy.$emit(name, ...args.slice(1))
 }
 
 
