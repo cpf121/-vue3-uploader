@@ -9,5 +9,15 @@ export default function useuploader(options,autoStart,fileStatusText){
     return {uploader}
 }
 
+const EVENTSMAP = {
+    [FILE_ADDED_EVENT]: true,
+    [FILES_ADDED_EVENT]: true,
+    [UPLOAD_START_EVENT]: 'uploadStart'
+}
+//注册所有事件
+function allEvent(...args){
+    const name = args[0]
+}
+
 
 
