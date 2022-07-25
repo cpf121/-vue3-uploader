@@ -9,6 +9,9 @@ export default function useuploader(options,autoStart,fileStatusText){
     return {uploader}
 }
 
+const FILE_ADDED_EVENT = 'fileAdded'
+const FILES_ADDED_EVENT = 'filesAdded'
+const UPLOAD_START_EVENT = 'uploadStart'
 const EVENTSMAP = {
     [FILE_ADDED_EVENT]: true,
     [FILES_ADDED_EVENT]: true,

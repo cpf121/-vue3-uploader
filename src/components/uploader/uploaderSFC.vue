@@ -44,15 +44,34 @@ const props=defineProps({
     }
     }
 })
-const emit=defineEmits(["fileAdded"])
+const emit=defineEmits(["fileAdded","filesAdded"])
 
 const files=ref([])
 const fileList=ref([])
 const started=ref(false)
 
 let {uploader}=useuploader(props.options,props.autoStart)
+
+//文件添加完成事件
 uploader.on('fileAdded',(file)=>{
     emit('fileAdded',file)
+    if(file.ignored){
+        return false
+    }
+})
+
+//文件夹添加完成事件
+uploader.on('filesAdded',(files, fileList)=>{
+  emit('filesAdded',files, fileList)
+  if(files.ignored||fileList.ignored){
+    return false
+  }
+})
+
+//移除文件事件
+uploader.on('fileRemoved',(file)=>{
+    files.value=uploader.files
+    fileList.value=uploader.fileList
 })
 onUnmounted(()=>{
     uploader.off("catchAll",allEvent)
