@@ -1,7 +1,7 @@
 import Uploader from 'simple-uploader.js'
 import { ref, onMounted, watch, onUnmounted } from 'vue'
 
-export default function useuploader(options,autoStart,fileStatusText){
+export function useuploader(options,autoStart,fileStatusText){
     options.initialPaused=!autoStart
     const uploader =new Uploader(options)
     uploader.fileStatusText=fileStatusText
@@ -18,7 +18,7 @@ const EVENTSMAP = {
     [UPLOAD_START_EVENT]: 'uploadStart'
 }
 //注册所有事件
-function allEvent(...args){
+export function allEvent(...args){
     const name = args[0]
     const handler = EVENTSMAP[name]
     if(handler){
