@@ -1,5 +1,5 @@
 import Uploader from 'simple-uploader.js'
-import { ref, onMounted, watch, onUnmounted } from 'vue'
+import { getCurrentInstance } from 'vue'
 
 export function useuploader(options,autoStart,fileStatusText){
     options.initialPaused=!autoStart
@@ -17,6 +17,7 @@ const EVENTSMAP = {
     [FILES_ADDED_EVENT]: true,
     [UPLOAD_START_EVENT]: 'uploadStart'
 }
+const {proxy} =getCurrentInstance()
 //注册所有事件
 export function allEvent(...args){
     const name = args[0]

@@ -18,7 +18,7 @@ import UploaderDrop from './drop.vue'
 import UploaderUnsupport from './unsupport.vue'
 import UploaderList from './list.vue'
 
-import { ref } from 'vue';
+import { ref,provide } from 'vue';
 import {useuploader,allEvent} from './uploader.js'
 const props=defineProps({
     options: {
@@ -88,6 +88,8 @@ uploader.on('fileAdded',handleFileAdded)
 uploader.on('filesAdded',handleFilesAdded)
 uploader.on('fileRemoved',handleFileRemoved)
 uploader.on("filesSubmitted",handleFileSubmitted)
+
+provide('uploader',uploader)
 onUnmounted(()=>{
     uploader.off("catchAll",allEvent)
     uploader.off("fileAdded",handleFileAdded)

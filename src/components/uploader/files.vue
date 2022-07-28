@@ -1,9 +1,9 @@
 <template>
-  <div class="uploader-list">
-    <slot :file-list="fileList">
+  <div class="uploader-files">
+    <slot :files="files">
       <ul>
-        <li v-for="file in fileList" :key="file.id">
-          <uploader-file :file="file" :list="true"></uploader-file>
+        <li v-for="file in files" :key="file.id">
+          <uploader-file :file="file"></uploader-file>
         </li>
       </ul>
     </slot>
@@ -13,16 +13,16 @@
 import { computed, inject } from 'vue'
 import UploaderFile from './file.vue'
 const uploader=inject("uploader")
-const fileList=computed(()=>{
-  return uploader.fileList
+
+const files=computed(()=>{
+  return uploader.files
 })
 </script>
-
 <style>
-  .uploader-list {
+  .uploader-files {
     position: relative;
   }
-  .uploader-list > ul {
+  .uploader-files > ul {
     list-style: none;
     margin: 0;
     padding: 0
