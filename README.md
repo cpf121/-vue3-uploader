@@ -1,6 +1,5 @@
-# Vue 3 + Vite
-
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Vue3-uploader
+之前断点上传一直用的[vue-simple-uploader](https://github.com/simple-uploader/vue-uploader/blob/master/README_zh-CN.md)，最近公司项目升级到vue3了，发现老版本的vue-simple-uploader用不了了，模仿着源代码改了改。
 
 ## Recommended IDE Setup
 
