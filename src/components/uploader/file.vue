@@ -210,7 +210,8 @@ const fileEventsHandler=(event, args)=>{
       processResponse(args[2])
       return
     }
-    eval(`_${event}(args)`)
+    proxy._.exposed[`_${event}`](args)
+    //eval(`_${event}(args)`)
   }
 }
 
@@ -301,6 +302,13 @@ onUnmounted(()=>{
     file.value.uploader.off(event, _handlers.value[event])
   })
   _handlers.value=null
+})
+
+defineExpose({
+  _fileProgress,
+  _fileSuccess,
+  _fileComplete,
+  _fileError
 })
 </script>
 <style>
