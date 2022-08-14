@@ -28,9 +28,7 @@ const props=defineProps({
 const btn=ref(null)
 onMounted(()=>{
   support.value=uploader.uploader.support
-  nextTick(()=>{
-    uploader.uploader.assignBrowse(btn.value, props.directory, props.single, props.attrs)
-  })
+  uploader.uploader.assignBrowse(btn.value, props.directory, props.single, props.attrs)
 })
 </script>
 

@@ -18,8 +18,8 @@ import UploaderDrop from './drop.vue'
 import UploaderUnsupport from './unsupport.vue'
 import UploaderList from './list.vue'
 
-import { ref,provide } from 'vue';
-import {useuploader,allEvent} from './uploader.js'
+import { ref,provide,getCurrentInstance, onUnmounted } from 'vue';
+import {useuploader} from './uploader.js'
 const props=defineProps({
     options: {
         type: Object,
@@ -44,8 +44,33 @@ const props=defineProps({
         }
     }
 })
-const emit=defineEmits(["fileAdded","filesAdded"])
+const emit=defineEmits(['fileAdded','filesAdded','fileComplete','fileSuccess','fileProgress','fileError','complete'])
 
+const FILE_ADDED_EVENT = 'fileAdded'
+const FILES_ADDED_EVENT = 'filesAdded'
+const UPLOAD_START_EVENT = 'uploadStart'
+const EVENTSMAP = {
+    [FILE_ADDED_EVENT]: true,
+    [FILES_ADDED_EVENT]: true,
+    [UPLOAD_START_EVENT]: 'uploadStart'
+}
+const {proxy} =getCurrentInstance()
+//注册所有事件
+function allEvent(...args){
+    const name = args[0]
+    const handler = EVENTSMAP[name]
+    if(handler){
+        if (handler === true) {
+            return
+        }
+        if(proxy[handler]){
+            proxy[handler].apply(proxy, args.slice(1))
+        }else{
+            console.error("方法未注册成功")
+        }
+    }
+    proxy.$emit(name, ...args.slice(1))
+}
 const files=ref([])
 const fileList=ref([])
 const started=ref(false)
@@ -90,6 +115,9 @@ uploader.on('fileRemoved',handleFileRemoved)
 uploader.on("filesSubmitted",handleFileSubmitted)
 
 provide('uploader',uploader)
+defineExpose({
+    uploader
+})
 onUnmounted(()=>{
     uploader.off("catchAll",allEvent)
     uploader.off("fileAdded",handleFileAdded)

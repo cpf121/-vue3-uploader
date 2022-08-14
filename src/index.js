@@ -1,10 +1,10 @@
-import Uploader from './components/uploader.vue'
-import UploaderBtn from './components/btn.vue'
-import UploaderDrop from './components/drop.vue'
-import UploaderUnsupport from './components/unsupport.vue'
-import UploaderList from './components/list.vue'
-import UploaderFiles from './components/files.vue'
-import UploaderFile from './components/file.vue'
+import Uploader from './components/uploader/uploaderSFC.vue'
+import UploaderBtn from './components/uploader/btn.vue'
+import UploaderDrop from './components/uploader/drop.vue'
+import UploaderUnsupport from './components/uploader/unsupport.vue'
+import UploaderList from './components/uploader/list.vue'
+import UploaderFiles from './components/uploader/files.vue'
+import UploaderFile from './components/uploader/file.vue'
 
 const uploader = {
   install,

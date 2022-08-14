@@ -25,8 +25,8 @@ const onDrop=()=>{
 }
 const drop=ref(null)
 onMounted(()=>{
+  uploader.uploader.assignDrop(drop.value)
   nextTick(()=>{
-    uploader.uploader.assignDrop(drop.value)
     uploader.uploader.on('dragenter', onDragEnter)
     uploader.uploader.on('dragleave', onDragLeave)
     uploader.uploader.on('drop', onDrop)

@@ -1,8 +1,17 @@
 {
   "name": "vue3-uploader",
-  "version": "0.0.2",
+  "version": "0.0.15",
   "type": "module",
   "License":"MIT",
+  "files": ["dist"],
+  "main": "./dist/vue3-uploader.es.js",
+  "module": "./dist/vue3-uploader.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue3-uploader.es.js",
+      "require": "./dist/vue3-uploader.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
