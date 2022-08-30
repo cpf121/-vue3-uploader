@@ -22,7 +22,7 @@ export default defineConfig({
       name: 'vue3-uploader',
       fileName: (format) => `vue3-uploader.${format}.js`
     },
-    sourcemap: true,
+    //sourcemap: true,
     rollupOptions:{
       // 确保外部化处理那些你不想打包进库的依赖
       external: ['vue'],

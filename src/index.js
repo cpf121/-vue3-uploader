@@ -21,7 +21,7 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(install)
 }
 
-export default uploader
+export {uploader}
 
 function install (Vue) {
   if (install.installed) {
